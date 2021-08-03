@@ -4,6 +4,7 @@ import { css } from "@emotion/react";
 import BarLoader from "react-spinners/BarLoader";
 
 import useMovies from "../hooks/useMovies";
+import Movies from "./Movies";
 import Placeholder from "../assets/placeholder.jpg";
 
 const override = css`
@@ -44,9 +45,15 @@ const MoviesList = () => {
 			{movies.map((moviesItem, index) => {
 				if (movies.length === index) {
 					return (
-						<div key={index}>
-							<h1>{moviesItem.title}</h1>
-						</div>
+						<Movies
+							ref={lastMoviesElementRef}
+							id={index}
+							title={moviesItem.title}
+							url={url}
+							release_date={moviesItem.release_date}
+							vote_average={moviesItem.vote_average}
+							overview={moviesItem.overview}
+						/>
 					);
 				} else {
 					let url = `https://image.tmdb.org/t/p/w500/${moviesItem.poster_path}`;
@@ -54,17 +61,15 @@ const MoviesList = () => {
 						url = Placeholder;
 					}
 					return (
-						<div ref={lastMoviesElementRef} key={index}>
-							<img
-								style={{ height: "146px", width: "146px" }}
-								src={url}
-								alt="Image"
-							/>
-							<h1>{moviesItem.title}</h1>
-							<p>Realease Date: {moviesItem.release_date}</p>
-							<p>Rating: {moviesItem.vote_average}/10</p>
-							<p>{moviesItem.overview}</p>
-						</div>
+						<Movies
+							ref={lastMoviesElementRef}
+							id={index}
+							title={moviesItem.title}
+							url={url}
+							release_date={moviesItem.release_date}
+							vote_average={moviesItem.vote_average}
+							overview={moviesItem.overview}
+						/>
 					);
 				}
 			})}
