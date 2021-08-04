@@ -20,6 +20,20 @@ const Wrapper = styled.div`
 	}
 `;
 
+const MaxReached = styled.h1`
+	color: #b00020;
+	font-size: 1.5rem;
+	padding: 2rem 0 0 2rem;
+
+	@media (max-width: 649px) {
+		font-size: 1.2rem;
+	}
+
+	@media (max-width: 546px) {
+		font-size: 1rem;
+	}
+`;
+
 const override = css`
 	display: block;
 	margin: 0 auto;
@@ -37,7 +51,7 @@ const MoviesList = () => {
 		(node) => {
 			if (loading) return;
 			if (observer.current) observer.current.disconnect();
-			if (pageNumber === 10) {
+			if (pageNumber === 6) {
 				setPagesReached(true);
 			} else {
 				observer.current = new IntersectionObserver((entries) => {
@@ -90,7 +104,7 @@ const MoviesList = () => {
 				}
 			})}
 			{pagesReached ? (
-				<h1>Max Pages Reached</h1>
+				<MaxReached>Max Pages Reached(Currently limited to 6 pages)</MaxReached>
 			) : (
 				<div>
 					<BarLoader

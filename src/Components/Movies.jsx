@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { StarIcon } from "@heroicons/react/solid";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const CardWrapper = styled.div`
 	margin: 2rem;
@@ -116,7 +118,9 @@ const Description = styled.p`
 const Movies = React.forwardRef((props, ref) => {
 	return (
 		<CardWrapper ref={ref} key={props.id}>
-			<MoviePoster src={props.imageUrl} alt="Image" />
+			<LazyLoadComponent effect="blur">
+				<MoviePoster src={props.imageUrl} alt="Image" />
+			</LazyLoadComponent>
 			<Details>
 				<MovieTitle href={props.movieUrl} target={props.id}>
 					{props.title}
