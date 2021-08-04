@@ -42,12 +42,10 @@ const MoviesList = () => {
 			} else {
 				observer.current = new IntersectionObserver((entries) => {
 					if (entries[0].isIntersecting && hasMore) {
-						console.log("intersecting");
 						setPageNumber((prevPageNumber) => prevPageNumber + 1);
 					}
 				});
 				if (node) observer.current.observe(node);
-				console.log(node);
 			}
 		},
 		[loading, hasMore]

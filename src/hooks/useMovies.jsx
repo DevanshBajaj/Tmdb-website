@@ -30,7 +30,6 @@ export default function useMovies(pageNumber) {
 				});
 				setHasMore(response.data.results.length > 0);
 				setLoading(false);
-				console.log(response.data);
 			})
 			.catch((error) => {
 				if (axios.isCancel(error)) return;
