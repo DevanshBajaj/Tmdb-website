@@ -9,12 +9,33 @@ const CardWrapper = styled.div`
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
-	padding: 2rem;
+	padding: 1.2rem 2rem;
 	background-color: #2f3147;
 	border-radius: 24px;
 
 	@media (max-width: 546px) {
-		padding: 1rem;
+		padding: 0.4rem 1rem;
+	}
+`;
+
+const MovieWrapper = styled.div`
+	height: 14rem;
+	width: 12rem;
+	border-radius: 12px;
+
+	@media (max-width: 1498px) {
+		height: 16rem;
+		width: 12rem;
+	}
+
+	@media (max-width: 649px) {
+		height: 12rem;
+		width: 8rem;
+	}
+
+	@media (max-width: 546px) {
+		height: 8rem;
+		width: 6rem;
 	}
 `;
 
@@ -36,6 +57,11 @@ const MoviePoster = styled.img`
 	@media (max-width: 546px) {
 		height: 8rem;
 		width: 6rem;
+	}
+
+	@media (max-width: 320px) {
+		height: 6rem;
+		width: 4rem;
 	}
 `;
 
@@ -121,7 +147,9 @@ const Movies = React.forwardRef((props, ref) => {
 	return (
 		<CardWrapper ref={ref} key={props.id}>
 			<LazyLoadComponent effect="blur">
-				<MoviePoster src={props.imageUrl} alt="Image" />
+				<MovieWrapper>
+					<MoviePoster src={props.imageUrl} alt="Image" />
+				</MovieWrapper>
 			</LazyLoadComponent>
 			<Details>
 				<MovieTitle href={props.movieUrl} target={props.id}>
