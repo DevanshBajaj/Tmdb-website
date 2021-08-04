@@ -2,10 +2,23 @@ import { useState, useRef, useCallback } from "react";
 
 import { css } from "@emotion/react";
 import BarLoader from "react-spinners/BarLoader";
+import styled from "styled-components";
 
 import useMovies from "../hooks/useMovies";
 import Movies from "./Movies";
 import Placeholder from "../assets/placeholder.jpg";
+
+const Wrapper = styled.div`
+	padding: 2rem 10rem;
+
+	@media (max-width: 898px) {
+		padding: 2rem 2rem;
+	}
+
+	@media (max-width: 546px) {
+		padding: 2rem 0rem;
+	}
+`;
 
 const override = css`
 	display: block;
@@ -41,31 +54,36 @@ const MoviesList = () => {
 	);
 
 	return (
-		<div>
+		<Wrapper>
 			{movies.map((moviesItem, index) => {
 				if (movies.length === index) {
 					return (
 						<Movies
 							ref={lastMoviesElementRef}
-							id={index}
+							key={index}
+							id={moviesItem.id}
 							title={moviesItem.title}
-							url={url}
 							release_date={moviesItem.release_date}
 							vote_average={moviesItem.vote_average}
 							overview={moviesItem.overview}
 						/>
 					);
 				} else {
-					let url = `https://image.tmdb.org/t/p/w500/${moviesItem.poster_path}`;
-					if (url === null) {
-						url = Placeholder;
+					let ImageUrl = `https://image.tmdb.org/t/p/w500/${moviesItem.poster_path}`;
+					if (ImageUrl === null) {
+						ImageUrl = Placeholder;
 					}
+
+					let MovieUrl = `https://www.themoviedb.org/movie/${moviesItem.id}`;
+
 					return (
 						<Movies
 							ref={lastMoviesElementRef}
-							id={index}
+							key={index}
+							id={moviesItem.id}
 							title={moviesItem.title}
-							url={url}
+							imageUrl={ImageUrl}
+							movieUrl={MovieUrl}
 							release_date={moviesItem.release_date}
 							vote_average={moviesItem.vote_average}
 							overview={moviesItem.overview}
@@ -86,7 +104,7 @@ const MoviesList = () => {
 					<div>{error && "error..."}</div>
 				</div>
 			)}
-		</div>
+		</Wrapper>
 	);
 };
 
