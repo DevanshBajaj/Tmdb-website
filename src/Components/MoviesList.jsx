@@ -108,7 +108,7 @@ const MoviesList = () => {
 			) : (
 				<div>
 					<BarLoader
-						color="#00a9e0"
+						color="#dee2f1"
 						loading={loading}
 						css={override}
 						size={150}

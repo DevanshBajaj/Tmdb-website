@@ -10,7 +10,7 @@ const CardWrapper = styled.div`
 	justify-content: space-around;
 	align-items: center;
 	padding: 2rem;
-	background-color: #36394a;
+	background-color: #2f3147;
 	border-radius: 24px;
 
 	@media (max-width: 546px) {
@@ -50,7 +50,7 @@ const MovieTitle = styled.a`
 	margin: 0;
 	font-size: 2.4rem;
 	text-decoration: none;
-	color: white;
+	color: #dee2f1;
 
 	@media (max-width: 1498px) {
 		font-size: 1.5rem;
@@ -90,6 +90,7 @@ const RatingWrapper = styled.div`
 
 const Rating = styled.p`
 	margin: 0;
+	color: #e5e5e5;
 	margin-left: 0.5rem;
 	font-size: 0.8rem;
 `;
@@ -99,6 +100,7 @@ const Description = styled.p`
 	-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 	margin: 0;
+	color: #dee2f1;
 	margin-top: 0.5rem;
 	max-width: 100%;
 	overflow: hidden;
