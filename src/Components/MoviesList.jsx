@@ -51,7 +51,7 @@ const MoviesList = () => {
 		(node) => {
 			if (loading) return;
 			if (observer.current) observer.current.disconnect();
-			if (pageNumber === 6) {
+			if (pageNumber === 40) {
 				setPagesReached(true);
 			} else {
 				observer.current = new IntersectionObserver((entries) => {
@@ -104,7 +104,7 @@ const MoviesList = () => {
 				}
 			})}
 			{pagesReached ? (
-				<MaxReached>Max Pages Reached(Currently limited to 6 pages)</MaxReached>
+				<MaxReached>Max Pages Reached(Currently limited to 40 pages)</MaxReached>
 			) : (
 				<div>
 					<BarLoader
@@ -113,7 +113,7 @@ const MoviesList = () => {
 						css={override}
 						size={150}
 					/>
-					<div>{error && "error..."}</div>
+					<div>{error && "Error..."}</div>
 				</div>
 			)}
 		</Wrapper>
