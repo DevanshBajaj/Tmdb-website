@@ -1,6 +1,10 @@
 # Tmdb Movies Showcase
 
-### A custom infinite scroll implementation for movies showcase website made with React to try Intersection observer API with the help of [TMDB API](https://www.themoviedb.org/documentation/api)
+### A custom infinite scroll implementation for movies showcase website made with React to try Intersection observer API with the help of [TMDB API](https://www.themoviedb.org/documentation/api).
+
+## [Live Preview](https://toprated-tmdb.netlify.app/)
+
+</br>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ac1bf5aa-0037-46bc-bbc3-99165fe89224/deploy-status)](https://app.netlify.com/sites/toprated-tmdb/deploys)
 
