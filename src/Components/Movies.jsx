@@ -93,9 +93,23 @@ const MovieTitle = styled.a`
 	}
 `;
 
+const Genres = styled.p`
+	margin: 0;
+	margin-top: 0.5rem;
+	font-size: 1rem;
+
+	@media (max-width: 1498px) {
+		font-size: 0.8rem;
+	}
+
+	@media (max-width: 649px) {
+		font-size: 0.6rem;
+	}
+`;
+
 const ReleaseDate = styled.p`
 	margin: 0;
-	margin-top: 0.8rem;
+	margin-top: 0.5rem;
 	font-size: 0.8rem;
 	color: #e5e5e5;
 
@@ -157,6 +171,7 @@ const Movies = React.forwardRef((props, ref) => {
 				<MovieTitle href={props.movieUrl} target={props.id}>
 					{props.title}
 				</MovieTitle>
+				<Genres>{props.genre}</Genres>
 				<ReleaseDate>Realease Date: {props.release_date}</ReleaseDate>
 				<RatingWrapper>
 					<StarIcon
