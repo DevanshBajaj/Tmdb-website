@@ -65,9 +65,36 @@ const MoviesList = () => {
 		[loading, hasMore]
 	);
 
+	let genreList = {
+		28: 'Action',
+		12: 'Adventure',
+		16: 'Animation',
+		35: 'Comedy',
+		80: 'Crime',
+		99: 'Documentary',
+		18: 'Drama',
+		10751: 'Family',
+		14: 'Fantasy',
+		36: 'History',
+		27: 'Horror',
+		10402: 'Music',
+		9648: 'Mystery',
+		10749: 'Romance',
+		878: 'Science Fiction',
+		10770: 'TV Movie',
+		53: 'Thriller',
+		10752: 'War',
+		37: 'Western'
+	}
+
 	return (
 		<Wrapper>
 			{movies.map((moviesItem, index) => {
+				let genreItems = [];
+				for (let i = 0; i < moviesItem.genre_ids.length; i++) {
+					genreItems.push(genreList[moviesItem.genre_ids[i]]);
+				}
+
 				if (movies.length === index) {
 					return (
 						<Movies
@@ -78,6 +105,7 @@ const MoviesList = () => {
 							release_date={moviesItem.release_date}
 							vote_average={moviesItem.vote_average}
 							overview={moviesItem.overview}
+							genre={genreItems.join(" , ")}
 						/>
 					);
 				} else {
@@ -99,6 +127,7 @@ const MoviesList = () => {
 							release_date={moviesItem.release_date}
 							vote_average={moviesItem.vote_average}
 							overview={moviesItem.overview}
+							genre={genreItems.join(" , ")}
 						/>
 					);
 				}
