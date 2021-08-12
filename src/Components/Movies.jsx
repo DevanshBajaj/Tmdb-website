@@ -1,7 +1,7 @@
 import styled from "styled-components";
+
 import { StarIcon } from "@heroicons/react/solid";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
 
 const CardWrapper = styled.div`
 	margin: 2rem;
@@ -43,22 +43,18 @@ const MoviePoster = styled.img`
 	height: 14rem;
 	width: 12rem;
 	border-radius: 12px;
-
 	@media (max-width: 1498px) {
 		height: 16rem;
 		width: 12rem;
 	}
-
 	@media (max-width: 649px) {
 		height: 12rem;
 		width: 8rem;
 	}
-
 	@media (max-width: 546px) {
 		height: 8rem;
 		width: 6rem;
 	}
-
 	@media (max-width: 320px) {
 		height: 6rem;
 		width: 4rem;
