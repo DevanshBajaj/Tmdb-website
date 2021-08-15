@@ -80,23 +80,23 @@ const MovieWrapper = styled.div`
 
 const MoviePoster = styled.img`
 	height: 14rem ;
-	width: auto;
+	width: 9.3rem;
 	border-radius: 12px;
 	@media (max-width: 1498px) {
 		height: 16rem;
-		width: auto;
+		width: 10.6rem;
 	}
 	@media (max-width: 649px) {
 		height: 12rem;
-		width: auto;
+		width: 8rem;
 	}
 	@media (max-width: 546px) {
 		height: 8rem;
-		width: auto;
+		width: 5.4rem;
 	}
 	@media (max-width: 320px) {
 		height: 6rem;
-		width: auto;
+		width: 4rem;
 	}
 `;
 
