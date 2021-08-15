@@ -30,7 +30,7 @@ export default function useMovies(pageNumber) {
 			},
 			cancelToken: new axios.CancelToken((c) => (cancel = c)),
 		})
-			.then(sleeper(2000)).then((response) => {
+			.then(sleeper(0)).then((response) => {
 				setMovies((prevMovies) => {
 					return [...new Set([...prevMovies, ...response.data.results])];
 				});
