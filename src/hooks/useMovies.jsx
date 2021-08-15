@@ -9,6 +9,12 @@ export default function useMovies(pageNumber) {
 	const [movies, setMovies] = useState([]);
 	const [hasMore, setHasMore] = useState(false);
 
+	function sleeper(ms) {
+		return function (x) {
+			return new Promise(resolve => setTimeout(() => resolve(x), ms));
+		};
+	}
+
 	useEffect(() => {
 		setLoading(true);
 		setError(false);
@@ -24,7 +30,7 @@ export default function useMovies(pageNumber) {
 			},
 			cancelToken: new axios.CancelToken((c) => (cancel = c)),
 		})
-			.then((response) => {
+			.then(sleeper(2000)).then((response) => {
 				setMovies((prevMovies) => {
 					return [...new Set([...prevMovies, ...response.data.results])];
 				});

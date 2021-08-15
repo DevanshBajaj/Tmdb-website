@@ -1,7 +1,46 @@
-import styled from "styled-components";
-
+import styled, { keyframes } from "styled-components";
 import { StarIcon } from "@heroicons/react/solid";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
+import useMovies from "../hooks/useMovies";
+import { Fragment } from "react";
+
+const Loading = keyframes`
+	from {
+		left: 200px;
+	}
+	to {
+		right: 100%
+	}
+	`;
+
+
+
+const StyledSkeleton = styled.div`
+	margin: 2rem;
+	position: relative;
+	overflow: hidden;
+	height: 19.2rem;
+	width: 80%;
+	background-color: #fafafa;
+
+	::before {
+		width: 100%;
+		display: block;
+		position: absolute;
+		top: 0px;
+		left: -200px;
+		height: 100%;
+		width: 200px;
+		background: linear-gradient(to right, rgb(248, 248, 248) 0%, rgb(255, 255, 255) 10%, rgb(248, 248, 248) 40%, rgb(248, 248, 248) 100%) no-repeat rgb(248, 248, 248);
+		opacity: 0;
+		transition: opacity 0.25s ease-out 0s;
+		animation: ${Loading} 2000ms ease-in-out infinite;
+	}
+
+	@media (max-width: 546px) {
+		padding: 0.4rem 1rem;
+	}
+`;
 
 const CardWrapper = styled.div`
 	margin: 2rem;
@@ -40,24 +79,24 @@ const MovieWrapper = styled.div`
 `;
 
 const MoviePoster = styled.img`
-	height: 14rem;
-	width: 12rem;
+	height: 14rem ;
+	width: auto;
 	border-radius: 12px;
 	@media (max-width: 1498px) {
 		height: 16rem;
-		width: 12rem;
+		width: auto;
 	}
 	@media (max-width: 649px) {
 		height: 12rem;
-		width: 8rem;
+		width: auto;
 	}
 	@media (max-width: 546px) {
 		height: 8rem;
-		width: 6rem;
+		width: auto;
 	}
 	@media (max-width: 320px) {
 		height: 6rem;
-		width: 4rem;
+		width: auto;
 	}
 `;
 
@@ -135,7 +174,7 @@ const Rating = styled.p`
 
 const Description = styled.p`
 	display: -webkit-box;
-	-webkit-line-clamp: 4;
+	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 	margin: 0;
 	color: #dee2f1;
@@ -146,7 +185,7 @@ const Description = styled.p`
 	text-overflow: ellipsis;
 
 	@media (max-width: 1498px) {
-		-webkit-line-clamp: 5;
+		-webkit-line-clamp: 4;
 		font-size: 0.8rem;
 	}
 
@@ -156,28 +195,34 @@ const Description = styled.p`
 `;
 
 const Movies = React.forwardRef((props, ref) => {
+	const { loading } = useMovies();
+
 	return (
-		<CardWrapper ref={ref} key={props.id}>
-			<LazyLoadComponent effect="blur">
-				<MovieWrapper>
-					<MoviePoster src={props.imageUrl} alt="Image" />
-				</MovieWrapper>
-			</LazyLoadComponent>
-			<Details>
-				<MovieTitle href={props.movieUrl} target={props.id}>
-					{props.title}
-				</MovieTitle>
-				<Genres>{props.genre}</Genres>
-				<ReleaseDate>Realease Date: {props.release_date}</ReleaseDate>
-				<RatingWrapper>
-					<StarIcon
-						style={{ color: "#FFC120", width: "20px", height: "20px" }}
-					/>
-					<Rating>{props.vote_average}/10</Rating>
-				</RatingWrapper>
-				<Description>{props.overview}</Description>
-			</Details>
-		</CardWrapper>
+		<Fragment>
+			{loading ? (<StyledSkeleton />) : (
+				<CardWrapper ref={ref} key={props.id}>
+					<LazyLoadComponent effect="blur">
+						<MovieWrapper>
+							<MoviePoster src={props.imageUrl} alt="Image" />
+						</MovieWrapper>
+					</LazyLoadComponent>
+					<Details>
+						<MovieTitle href={props.movieUrl} target={props.id}>
+							{props.title}
+						</MovieTitle>
+						<Genres>{props.genre}</Genres>
+						<ReleaseDate>Realease Date: {props.release_date}</ReleaseDate>
+						<RatingWrapper>
+							<StarIcon
+								style={{ color: "#FFC120", width: "20px", height: "20px" }}
+							/>
+							<Rating>{props.vote_average}/10</Rating>
+						</RatingWrapper>
+						<Description>{props.overview}</Description>
+					</Details>
+				</CardWrapper>)}
+		</Fragment>
+
 	);
 });
 
